@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_bloc_sample/todo/domain/todo_model.dart';
+import 'package:todo_bloc_sample/todo/domain/entities/todo_entity.dart';
 import 'package:todo_bloc_sample/todo/presentation/blocs/todo_bloc.dart';
 import 'package:todo_bloc_sample/todo/presentation/blocs/todo_events.dart';
 

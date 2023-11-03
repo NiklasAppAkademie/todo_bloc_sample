@@ -1,6 +1,6 @@
 class Todo {
   Todo(this.title);
 
-  String title;
+  final String title;
   bool done = false;
 }

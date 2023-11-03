@@ -1,16 +1,18 @@
 import 'package:bloc/bloc.dart';
-import 'package:todo_bloc_sample/todo/domain/todo_model.dart';
+import 'package:todo_bloc_sample/todo/domain/entities/todo_entity.dart';
+import 'package:todo_bloc_sample/todo/domain/use_cases/get_todos_uc.dart';
 import 'package:todo_bloc_sample/todo/presentation/blocs/todo_events.dart';
 import 'package:todo_bloc_sample/todo/presentation/blocs/todo_state.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
-  TodoBloc()
-      : super(TodoState([
-          Todo("Aufräumen"),
-          Todo("Rasen mähen"),
-          Todo("Kochen"),
-          Todo("Duschen")
-        ])) {
+  final GetTodosUC getTodosUC;
+
+  TodoBloc(this.getTodosUC) : super(TodoState([])) {
+    on<LoadTodos>((event, emit) async {
+      List<Todo> todos = await getTodosUC();
+      emit(TodoState(todos));
+    });
+
     on<ToggleTodo>((event, emit) {
       List<Todo> currentTodos = state.todos;
       Todo selectedTodo =
